@@ -1,0 +1,51 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+}
+
+* html body {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	
+}
+
+.container {
+	background-color: #F7F7F7;
+	padding-bottom: 60px;
+}
+
+footer {
+	bottombottom: 0;
+	height: 40px;
+	
+}
+
+.content {
+	text-align: center;
+	font-family: Georgia, serif;
+	font-size: 1.5em;
+	font-weight: 100;
+}
+
+h1 {
+	text-align: center;
+	font-family: Georgia, serif;
+	font-size: 3em;
+	font-weight: 400;
+}
+
+.img {
+	text-align: center;
+	
+}
+
+hr{
+	color: black;
+}

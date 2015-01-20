@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hbm2ddl.auto">update</property>
+		<mapping class="net.tarasyuk.horseracebets.data.Bet" />
+		<mapping class="net.tarasyuk.horseracebets.data.Horse" />
+		<mapping class="net.tarasyuk.horseracebets.authorization.User" />
+		<mapping class="net.tarasyuk.horseracebets.authorization.UserRole" />
+		<mapping class="net.tarasyuk.horseracebets.data.Racing" />		
+	</session-factory>
+</hibernate-configuration>
