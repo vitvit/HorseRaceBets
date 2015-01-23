@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -24,25 +25,23 @@ public class Racing {
 	@GeneratedValue
 	private Integer id;
 
-//	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-//	@JoinTable(name="Horses", joinColumns=@JoinColumn(name="horse_id"), inverseJoinColumns=@JoinColumn(name="racing_id"))
-//	private List<Horse> horses;
+	@OneToMany(mappedBy = "racing")
+	List<Bet> bets;
 
-	public Integer getId() {
-		return id;
-	}
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Column(name = "DATE")
+	private Date date;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	@Size(min = 2, message = "at least 2 characters!")
+	@Column(name = "Hippodrome")
+	private String hippodrome;
 
-//	public List<Horse> getHorses() {
-//		return horses;
-//	}
-
-//	public void setHorses(List<Horse> horses) {
-//		this.horses = horses;
-//	}
+	// @ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST,
+	// CascadeType.MERGE})
+	// @JoinTable(name="Horses", joinColumns=@JoinColumn(name="horse_id"),
+	// inverseJoinColumns=@JoinColumn(name="racing_id"))
+	// private List<Horse> horses;
 
 	public List<Bet> getBets() {
 		return bets;
@@ -60,18 +59,21 @@ public class Racing {
 		this.date = date;
 	}
 
-	@OneToMany( mappedBy = "racing")
-	List<Bet> bets;
+	public Integer getId() {
+		return id;
+	}
 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@Column(name = "DATE")
-	private Date date;
-	
-	@Size(min = 2, message = "at least 2 characters!")
-	@Column(name="Hippodrome")
-	private String hippodrome;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
+	// public List<Horse> getHorses() {
+	// return horses;
+	// }
+
+	// public void setHorses(List<Horse> horses) {
+	// this.horses = horses;
+	// }
 	public String getHippodrome() {
 		return hippodrome;
 	}

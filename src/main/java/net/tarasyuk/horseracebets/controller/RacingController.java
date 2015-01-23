@@ -59,10 +59,10 @@ public class RacingController {
 		return "redirect:/racing.html";
 	}
 
-	@InitBinder
+/**	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-	} 
+	} */
 }

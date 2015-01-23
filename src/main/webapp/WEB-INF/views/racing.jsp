@@ -9,6 +9,11 @@
 
 </head>
 <body>
+<script>
+    $(function () {
+        $("#birthDate").datepicker({ dateFormat: 'yy/mm/dd'});
+    });
+</script>
 	<div class="container">
 		<%@ include file="layout/main.jsp"%>
 
@@ -28,7 +33,7 @@
 						code="label.hippodrome" /></label>
 				<div class="col-sm-10">
 
-					<form:input type="text" path="hippodrome" cssClass="form-control" />
+					<form:input name="birthDate" path="hippodrome" cssClass="form-control" />
 					<form:errors path="hippodrome" />
 				</div>
 			</div>
