@@ -16,6 +16,6 @@ public interface HorseService {
 	
 	public Horse findBetsByHorse(Integer id);
 	
-	//public List<Horse> findHorsesByRacing(Integer id);
+	public List<Horse> initHorsesForRacing(int number);
 	
 }

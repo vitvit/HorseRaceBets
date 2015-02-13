@@ -1,5 +1,6 @@
 package net.tarasyuk.horseracebets.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.tarasyuk.horseracebets.dao.BetDao;
@@ -52,9 +53,14 @@ public class HorseServiceImpl implements HorseService {
 		return horse;
 	}
 
-	// public List<Horse> findHorsesByRacing(Integer id) {
+	public List<Horse> initHorsesForRacing(int number) {
+		List<Horse> horses = new ArrayList<>();
 
-	// return null;
-	// }
+		for (int i = 0; i < number; i++) {
+			horses.add(new Horse());
+		}
+
+		return horses;
+	}
 
 }

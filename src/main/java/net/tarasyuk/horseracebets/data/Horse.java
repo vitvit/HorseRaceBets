@@ -1,7 +1,9 @@
 package net.tarasyuk.horseracebets.data;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.tarasyuk.horseracebets.data.Bet;
 
@@ -11,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -44,20 +47,20 @@ public class Horse {
 			CascadeType.MERGE, CascadeType.REMOVE }, mappedBy = "horse")
 	List<Bet> bets;
 	
-//	@ManyToMany(mappedBy="horses")
-//	private List<Racing> racingList;                   
+	@ManyToMany(mappedBy="horses")
+	private List<Racing> racing;                   
 	
 	public Integer getId() {
 		return id;
 	}
 
-//	public List<Racing> getRacingList() {
-//		return racingList;
-//	}
+	public List<Racing> getRacing() {
+		return racing;
+	}
 
-//	public void setRacingList(List<Racing> racingList) {
-//		this.racingList = racingList;
-//	}
+	public void setRacing(List<Racing> racing) {
+		this.racing = racing;
+	}
 
 	public void setId(Integer id) {
 		this.id = id;

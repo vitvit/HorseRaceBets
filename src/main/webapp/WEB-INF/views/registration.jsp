@@ -26,7 +26,7 @@
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label"><spring:message
 						code="label.name" /></label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<form:input path="username" cssClass="form-control" />
 					<form:errors path="username" />
 				</div>
@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<label for="email" class="col-sm-2 control-label"><spring:message
 						code="label.email" /></label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<form:input path="email" cssClass="form-control" />
 					<form:errors path="email" />
 				</div>
@@ -42,7 +42,7 @@
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label"><spring:message
 						code="label.password" /></label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<form:password path="password" cssClass="form-control" />
 					<form:errors path="password" />
 				</div>
@@ -50,7 +50,7 @@
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label"><spring:message
 						code="label.passwordagain" /></label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<input type="password" name="password_again" id="password_again"
 						class="form-control" />
 				</div>

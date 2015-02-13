@@ -9,41 +9,66 @@
 
 </head>
 <body>
-<script>
-    $(function () {
-        $("#birthDate").datepicker({ dateFormat: 'yy/mm/dd'});
-    });
-</script>
+
 	<div class="container">
 		<%@ include file="layout/main.jsp"%>
 
 		<form:form method="post" commandName="racing">
+
+			<label for="name" class="col-sm-2 control-label"><spring:message
+					code="label.date" /></label>
+			<div class="col-sm-2">
+
+				<form:input type="date" path="date" cssClass="form-control"
+					name="date" />
+				<form:errors path="date" />
+			</div>
+
+			<br />
+			<br />
+
+			<label for="hippoodrome" class="col-sm-2 control-label"><spring:message
+					code="label.hippodrome" /></label>
+			<div class="col-sm-2">
+
+				<form:input name="birthDate" path="hippodrome"
+					cssClass="form-control" />
+				<form:errors path="hippodrome" />
+			</div>
+
+			<br />
+			<br />
+
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label"><spring:message
-						code="label.date" /></label>
-				<div class="col-sm-10">
+						code="label.horses" /></label> <br />
+
+				<div class="col-sm-2">
+					<c:forEach items="${racing.horses}" var="horse" varStatus="status">
+						<form:select path="horses[${status.index }].id"
+							cssClass="form-control">
+							<form:option value="0" cssClass="form-control">
+								<spring:message code="label.horses" />
+							</form:option>
+							<form:options items="${horseList}" itemValue="id"
+								itemLabel="horseName" />
+						</form:select>
+						<br/>
+					</c:forEach>
+				</div>
+			</div>
+
+
+
+			<div class="col-sm-10">
+				<input type="submit"
+					value="<spring:message code="label.addracing" />"
+					class="btn btn-custom" />
 					
-					<form:input type="date" path="date" cssClass="form-control" name="date"
-						 />
-					<form:errors path="date" />
-				</div>
 			</div>
-			<div class="form-group">
-				<label for="hippoodrome" class="col-sm-2 control-label"><spring:message
-						code="label.hippodrome" /></label>
-				<div class="col-sm-10">
-
-					<form:input name="birthDate" path="hippodrome" cssClass="form-control" />
-					<form:errors path="hippodrome" />
-				</div>
-			</div>
-
-
-			<input type="submit"
-				value="<spring:message code="label.addracing" />"
-				class="btn btn-custom" />
 		</form:form>
 
+		
 		<script type="text/javascript">
 			$(document).ready(
 					function() {
@@ -80,8 +105,8 @@
 				</tbody>
 			</table>
 		</c:if>
-	
-	<!-- Modal -->
+
+		<!-- Modal -->
 		<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

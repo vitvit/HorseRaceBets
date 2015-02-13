@@ -1,5 +1,6 @@
 package net.tarasyuk.horseracebets.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.tarasyuk.horseracebets.dao.HorseDao;
 import net.tarasyuk.horseracebets.dao.RacingDao;
+import net.tarasyuk.horseracebets.data.Horse;
 import net.tarasyuk.horseracebets.data.Racing;
 
 @Service
@@ -39,4 +41,5 @@ public class RacingServiceImpl implements RacingService {
 		racingDao.removeRacing(id);
 
 	}
-}
+	
+	}

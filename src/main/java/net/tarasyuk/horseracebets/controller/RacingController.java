@@ -1,10 +1,15 @@
 package net.tarasyuk.horseracebets.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
+import net.tarasyuk.horseracebets.data.Horse;
 import net.tarasyuk.horseracebets.data.Racing;
 import net.tarasyuk.horseracebets.service.HorseService;
 import net.tarasyuk.horseracebets.service.RacingService;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/racing")
@@ -30,19 +36,19 @@ public class RacingController {
 	@Autowired
 	HorseService horseService;
 
-	@ModelAttribute("racing")
-	public Racing newRacing() {
-		return new Racing();
-	}
-
+	
 	@RequestMapping
 	public String listRacing(Model model) {
+		Racing racing = new Racing();
+		List<Horse> horses = horseService.initHorsesForRacing(racing.getNumberOfHorses());
+		racing.setHorses(horses);
+		model.addAttribute("racing", racing);
 		model.addAttribute("listRacing", racingService.findAllRacings());
 		model.addAttribute("horseList", horseService.listHorse());
 		return "/racing";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping( method = RequestMethod.POST)
 	public String addRacing(Model model,
 			@Valid @ModelAttribute("racing") Racing racing, BindingResult result) {
 		if (result.hasErrors()) {
@@ -59,10 +65,11 @@ public class RacingController {
 		return "redirect:/racing.html";
 	}
 
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-	} 
+	}
 }
