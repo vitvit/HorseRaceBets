@@ -10,6 +10,30 @@
 <body>
 	<div class="container">
 		<%@ include file="layout/main.jsp"%>
+		
+		<c:if test="${!empty listRacing}">
+			<table class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<th><spring:message code="label.date" /></th>
+						<th><spring:message code="label.hippodrome" /></th>
+						<th><spring:message code="label.bet" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${listRacing}" var="racing">
+						<tr>
+							<td><c:out value="${racing.date}" /></td>
+							<td><c:out value="${racing.hippodrome}" /></td>
+							<td><a
+								href="<spring:url value="/account/bet.html" />"
+								class="btn btn-danger triggerRemove"> <spring:message
+										code="label.remove" /></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
 		<!-- Button trigger modal -->
 		<button class="btn btn-custom btn-lg" data-toggle="modal"
 			data-target="#myModal">

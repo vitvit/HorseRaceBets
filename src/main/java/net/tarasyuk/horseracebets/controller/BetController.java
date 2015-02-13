@@ -2,11 +2,13 @@ package net.tarasyuk.horseracebets.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.tarasyuk.horseracebets.data.Bet;
 import net.tarasyuk.horseracebets.service.BetService;
 import net.tarasyuk.horseracebets.service.HorseService;
+import net.tarasyuk.horseracebets.service.RacingService;
 import net.tarasyuk.horseracebets.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class BetController {
 	private HorseService horseService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RacingService racingService;
 
 	@ModelAttribute("bet")
 	public Bet bet() {
@@ -38,13 +42,14 @@ public class BetController {
 		String username = principal.getName();
 		model.addAttribute("betList", betService.findBetsByUser(username));
 		model.addAttribute("horseList", horseService.listHorse());
+		model.addAttribute("listRacing", racingService.findAllRacings()); // change to future racings
 		model.addAttribute("user", userService.findUserWithBets(username));
 		return "account";
 	}
 
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String addBet(Model model, @Valid @ModelAttribute("bet") Bet bet,
-			BindingResult result, Principal principal) {
+			BindingResult result, Principal principal, HttpSession session) {
 
 		if (result.hasErrors()) {
 			return account(model, principal);
