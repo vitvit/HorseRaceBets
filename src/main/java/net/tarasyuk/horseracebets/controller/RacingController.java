@@ -1,11 +1,10 @@
 package net.tarasyuk.horseracebets.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -36,11 +35,11 @@ public class RacingController {
 	@Autowired
 	HorseService horseService;
 
-	
 	@RequestMapping
 	public String listRacing(Model model) {
 		Racing racing = new Racing();
-		List<Horse> horses = horseService.initHorsesForRacing(racing.getNumberOfHorses());
+		List<Horse> horses = horseService.initHorsesForRacing(racing
+				.getNumberOfHorses());
 		racing.setHorses(horses);
 		model.addAttribute("racing", racing);
 		model.addAttribute("listRacing", racingService.findAllRacings());
@@ -48,7 +47,7 @@ public class RacingController {
 		return "/racing";
 	}
 
-	@RequestMapping( method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String addRacing(Model model,
 			@Valid @ModelAttribute("racing") Racing racing, BindingResult result) {
 		if (result.hasErrors()) {
@@ -65,7 +64,6 @@ public class RacingController {
 		return "redirect:/racing.html";
 	}
 
-	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM");
