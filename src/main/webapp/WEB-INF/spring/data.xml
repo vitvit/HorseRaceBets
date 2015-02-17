@@ -13,7 +13,8 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+	
+	
 	<!-- transactional control with @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
@@ -22,8 +23,20 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	
+
+
+	<mvc:annotation-driven conversion-service="conversionService" />
+
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="net.tarasyuk.horseracebets.formatter.HorseFormatter" />
+				<bean class="net.tarasyuk.horseracebets.formatter.RacingFormatter" />
+			</set>
+		</property>
+	</bean>
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
@@ -46,18 +59,18 @@
 
 
 
-	<!--  dataSource  bean properties -->
+	<!-- dataSource bean properties -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		p:location="/WEB-INF/jdbc.properties" />
 
-	<!--  dataSource bean -->
+	<!-- dataSource bean -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.databaseurl}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
-	<!--  hibernate sessionFactory  -->
+	<!-- hibernate sessionFactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -75,7 +88,7 @@
 			</props>
 		</property>
 	</bean>
-	
-	 	
+
+
 
 </beans>

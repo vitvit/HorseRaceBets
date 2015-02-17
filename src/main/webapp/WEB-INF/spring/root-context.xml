@@ -17,15 +17,17 @@
 
 	<!--  @Annotation-based 
 		configuration -->
-	<context:component-scan base-package="net.tarasyuk.horseracebets"
+<!--  <context:component-scan base-package="net.tarasyuk.horseracebets"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
-
+	</context:component-scan> -->
+	
 	<!-- 		(@Component, @Service) -->
 	<context:component-scan base-package="net.tarasyuk.horseracebets.dao" />
 	<context:component-scan base-package="net.tarasyuk.horseracebets.service" />
+	<context:component-scan base-package="net.tarasyuk.horseracebets.rssservice" />
+	<context:component-scan base-package="net.tarasyuk.horseracebets.formatter" />
 
 	<!-- Data Access Resources -->
 	<import resource="data.xml" />
